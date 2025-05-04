@@ -39,5 +39,6 @@
   },
   "devDependencies": {
     "cross-env": "^7.0.3"
-  }
+  },
+  "homepage": "https://backend.herokuapp.com"
 }
