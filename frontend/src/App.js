@@ -56,9 +56,9 @@ function App() {
 
     try {
       const response = await axios.post("http://127.0.0.1:5000/generate_report", {
-        age: 67,
-        gender: "Male",
-        view: "PA",
+        age: prediction.age,
+        gender: prediction.gender,
+        view: prediction.view,
         findings: prediction.labels
       });
       setReport(response.data.report);
@@ -95,7 +95,21 @@ function App() {
   <div style={{ marginTop: "20px" }}>
     <h3> Prediction Result</h3>
     <p><strong>Prediction:</strong> {prediction.prediction}</p>
-    
+    <p><strong>Age:</strong> {prediction.age}</p>
+    <p><strong>Gender:</strong> {prediction.gender}</p>
+    <p><strong>View:</strong> {prediction.view}</p>
+    {prediction.enhanced_url && (
+    <div style={{ marginTop: 20, textAlign: "center" }}>
+    <h3>VDSR Enhanced Image</h3>
+    <img
+      src={prediction.enhanced_url}
+      width="300px"
+      alt="VDSR enhanced chest X‑ray"
+      style={{ marginTop: 10 }}
+    />
+  </div>
+)}
+
     <div style={{ display: "inline-block", textAlign: "left" }}>
       <ul style={{ listStyleType: "disc", paddingLeft: "20px" }}>
         {prediction.labels.map((label, index) => (
